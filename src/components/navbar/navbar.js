@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useHistory } from "react-router-dom";
 import Button from "../subcomponents//button/button";
 import Burgerbar from "./burgerbar";
@@ -6,8 +6,6 @@ import "../../layout.css";
 import "./navbar.css";
 
 function Navbar(props) {
-  const [currentTab, setCurrentTab] = useState(null);
-
   let { tabs, links, onBurgerBar } = props;
 
   const history = useHistory();
@@ -25,6 +23,7 @@ function Navbar(props) {
       </div>
       {tabs.map((tab) => (
         <div
+          key={tab}
           onClick={() => redirectTo(`/${links[tab]}`)}
           className="flex-column-center-center navbar-items"
         >

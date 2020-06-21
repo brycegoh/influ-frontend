@@ -34,7 +34,7 @@ function Login() {
           onChange={onPasswordChange}
         />
       </form>
-      <Button onClick={onLogin} />
+      <Button onClick={onLogin} value="Login" type="primary" size="regular" />
     </div>
   );
 }

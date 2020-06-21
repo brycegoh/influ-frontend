@@ -18,6 +18,7 @@ function Sidebar(props) {
     >
       {tabs.map((tab) => (
         <div
+          key={tab}
           onClick={() => redirectTo(`/${links[tab]}`)}
           className="flex-row-start-center sidebar-items"
         >
