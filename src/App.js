@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter, Route, useHistory } from "react-router-dom";
+import { connect } from "react-redux";
 import LandingPage from "./components/landingPage";
 import Navbar from "./components/navbar/navbar";
 import Sidebar from "./components/sidebar/sidebar";
@@ -8,12 +9,23 @@ import Backdrop from "./components/subcomponents/backdrop/backdrop";
 import { _getTokens } from "./services";
 import ProtectedRoute from "./components/protectedRoute";
 
-function App() {
-  // useEffect(() => {
-  //   _getTokens()
-  //     .then((res) => console.log(res))
-  //     .catch((err) => console.log(err));
-  // }, []);
+function App(props) {
+  useEffect(() => {
+    _getTokens()
+      .then((res) => {
+        // let { userId, email, userType } = res.body;
+        // let cfToken = res.header["cf-token"];
+        // console.log(cfToken);
+        console.log(res);
+        // props.setReduxUserDataAndCfToken({
+        //   userId,
+        //   email,
+        //   role: userType,
+        //   cfToken,
+        // });
+      })
+      .catch((err) => console.log(err));
+  });
 
   const tabs = ["About Us", "Blog", "Contact Us"];
   const links = {
@@ -46,4 +58,21 @@ function App() {
   );
 }
 
-export default App;
+export default connect(
+  (state) => state.user,
+  (dispatch) => {
+    return {
+      setReduxUserDataAndCfToken: ({ userId, email, role, cfToken }) => {
+        return dispatch({
+          type: "",
+          payload: {
+            userId,
+            email,
+            role,
+            cfToken,
+          },
+        });
+      },
+    };
+  }
+)(App);

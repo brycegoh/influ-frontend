@@ -3,8 +3,9 @@ import Input from "./subcomponents/input";
 import Button from "./subcomponents/button/button";
 import "../layout.css";
 import { _login } from "../services/index";
+import { connect } from "react-redux";
 
-function Login() {
+function Login(props) {
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
 
@@ -17,7 +18,16 @@ function Login() {
   const onLogin = () => {
     _login(email, password)
       .then((res) => {
-        console.log(res);
+        let { userId, email, userType } = res.data.user;
+        let cfToken = res.headers["cf-token"];
+        console.log({ userId, email, userType, cfToken });
+        props.setReduxUserDataAndCfToken({
+          userId,
+          email,
+          role: userType,
+          cfToken,
+        });
+        setPassword(null);
       })
       .catch((e) => {
         console.log(e);
@@ -39,4 +49,21 @@ function Login() {
   );
 }
 
-export default Login;
+export default connect(
+  (state) => state.user,
+  (dispatch) => {
+    return {
+      setReduxUserDataAndCfToken: ({ userId, email, role, cfToken }) => {
+        return dispatch({
+          type: "ADD_USERID_EMAIL_ROLE_CSRFTOKEN",
+          payload: {
+            userId,
+            email,
+            role,
+            cfToken,
+          },
+        });
+      },
+    };
+  }
+)(Login);

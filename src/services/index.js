@@ -13,8 +13,8 @@ export const _login = (email, pw) =>
     method: "post",
     withCredentials: true,
     data: {
-      username: email,
-      password: pw,
+      username: "testing1234@gmail.com",
+      password: "testing1234",
     },
     url: `${API_ENDPOINT}/users/login`,
   });

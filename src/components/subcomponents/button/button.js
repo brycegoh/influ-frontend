@@ -22,7 +22,7 @@ function Button(props) {
   return (
     <button
       onClick={onClick}
-      class={`pure-button ${buttonTypes[type]} ${buttonSize[size]}`}
+      className={`pure-button ${buttonTypes[type]} ${buttonSize[size]}`}
     >
       {value}
     </button>
