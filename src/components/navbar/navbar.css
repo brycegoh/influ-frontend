@@ -48,9 +48,8 @@
 
 /* Login and register */
 .navbar-button {
-  width: 15%;
-  font-family: "Lato", sans-serif;
-  padding: 5px;
+  width: 190px;
+  margin-right: 5px;
 }
 
 @media (max-width: 760px) {

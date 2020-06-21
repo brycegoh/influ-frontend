@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Input from "./subcomponents/input";
-import Button from "./subcomponents/button";
+import Button from "./subcomponents/button/button";
 import "../layout.css";
 import { _login } from "../services/index";
 

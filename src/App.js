@@ -40,7 +40,7 @@ function App() {
         />
         {sideDrawerStatus && <Backdrop onClick={onBurgerBar} />}
         <Route exact path="/" component={LandingPage} />
-        <ProtectedRoute exact path="/login" component={Login} />
+        <Route exact path="/login" component={Login} />
       </BrowserRouter>
     </div>
   );

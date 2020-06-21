@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import Button from "../subcomponents/button";
+import Button from "../subcomponents//button/button";
 import Burgerbar from "./burgerbar";
 import "../../layout.css";
 import "./navbar.css";
@@ -31,9 +31,20 @@ function Navbar(props) {
           {tab}
         </div>
       ))}
-      <div className="flex-row-center-center navbar-button">
-        <Button onClick={redirectTo} value={"Login"} />
-        <Button onClick={redirectTo} value={"Register"} />
+      <div className="flex-row-space-between-center navbar-button">
+        <Button
+          onClick={() => redirectTo("/login")}
+          value={"Login"}
+          type="primary"
+          size="regular"
+        />
+        <div className="spacer" />
+        <Button
+          onClick={() => redirectTo("/register")}
+          value={"Register"}
+          type="primary"
+          size="regular"
+        />
       </div>
     </div>
   );
