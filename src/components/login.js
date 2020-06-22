@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from "react";
 import Input from "./subcomponents/input";
 import Button from "./subcomponents/button/button";
-import "../layout.css";
+import "./layout.css";
 import { _login } from "../services/index";
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 function Login(props) {
-  const [email, setEmail] = useState(null);
+  const { userId, email, role, csrfToken } = useSelector((state) => state.user);
+  console.log({ userId, email, role, csrfToken });
+  const dispatch = useDispatch();
+
+  const [inputEmail, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
 
   const onEmailChange = (e) => {
@@ -16,18 +20,15 @@ function Login(props) {
     setPassword(e.target.value);
   };
   const onLogin = () => {
-    _login(email, password)
+    _login(email, password, csrfToken)
       .then((res) => {
         let { userId, email, userType } = res.data.user;
         let cfToken = res.headers["cf-token"];
         console.log({ userId, email, userType, cfToken });
-        props.setReduxUserDataAndCfToken({
-          userId,
-          email,
-          role: userType,
-          cfToken,
+        dispatch({
+          type: "ADD_USERID_EMAIL_ROLE_CSRFTOKEN",
+          payload: { userId, email, userType, cfToken },
         });
-        setPassword(null);
       })
       .catch((e) => {
         console.log(e);
@@ -37,7 +38,11 @@ function Login(props) {
   return (
     <div>
       <form>
-        <Input placeholder={"Email"} value={email} onChange={onEmailChange} />
+        <Input
+          placeholder={"Email"}
+          value={inputEmail}
+          onChange={onEmailChange}
+        />
         <Input
           placeholder={"Password"}
           value={password}
@@ -49,21 +54,4 @@ function Login(props) {
   );
 }
 
-export default connect(
-  (state) => state.user,
-  (dispatch) => {
-    return {
-      setReduxUserDataAndCfToken: ({ userId, email, role, cfToken }) => {
-        return dispatch({
-          type: "ADD_USERID_EMAIL_ROLE_CSRFTOKEN",
-          payload: {
-            userId,
-            email,
-            role,
-            cfToken,
-          },
-        });
-      },
-    };
-  }
-)(Login);
+export default Login;

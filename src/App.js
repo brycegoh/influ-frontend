@@ -1,7 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { BrowserRouter, Route, useHistory } from "react-router-dom";
+import {
+  BrowserRouter,
+  Route,
+  useHistory,
+  Switch,
+  Redirect,
+} from "react-router-dom";
 import { connect } from "react-redux";
-import LandingPage from "./components/landingPage";
+import LandingPage from "./components/landingpage/landingPage";
 import Navbar from "./components/navbar/navbar";
 import Sidebar from "./components/sidebar/sidebar";
 import Login from "./components/login";
@@ -10,23 +16,22 @@ import { _getTokens } from "./services";
 import ProtectedRoute from "./components/protectedRoute";
 
 function App(props) {
+  console.log(props);
   useEffect(() => {
+    console.log("REFRESHING TOKENS");
     _getTokens()
       .then((res) => {
-        // let { userId, email, userType } = res.body;
-        // let cfToken = res.header["cf-token"];
-        // console.log(cfToken);
-        console.log(res);
-        // props.setReduxUserDataAndCfToken({
-        //   userId,
-        //   email,
-        //   role: userType,
-        //   cfToken,
-        // });
+        let { userId, email, userType } = res.data;
+        let cfToken = res.headers["cf-token"];
+        props.setReduxUserDataAndCfToken({
+          userId,
+          email,
+          userType,
+          cfToken,
+        });
       })
       .catch((err) => console.log(err));
-  });
-
+  }, []);
   const tabs = ["About Us", "Blog", "Contact Us"];
   const links = {
     "About Us": "about-us",
@@ -41,7 +46,7 @@ function App(props) {
   };
 
   return (
-    <div style={{ height: "100%" }}>
+    <div style={{ height: "100%", width: "100%" }}>
       <BrowserRouter>
         <Navbar tabs={tabs} links={links} onBurgerBar={onBurgerBar} />
         <Sidebar
@@ -51,8 +56,11 @@ function App(props) {
           links={links}
         />
         {sideDrawerStatus && <Backdrop onClick={onBurgerBar} />}
-        <Route exact path="/" component={LandingPage} />
-        <Route exact path="/login" component={Login} />
+        <Switch>
+          <Route exact path="/" component={LandingPage} />
+          <Route exact path="/login" component={Login} />
+          <Redirect to="/" />
+        </Switch>
       </BrowserRouter>
     </div>
   );
@@ -64,7 +72,7 @@ export default connect(
     return {
       setReduxUserDataAndCfToken: ({ userId, email, role, cfToken }) => {
         return dispatch({
-          type: "",
+          type: "ADD_USERID_EMAIL_ROLE_CSRFTOKEN",
           payload: {
             userId,
             email,

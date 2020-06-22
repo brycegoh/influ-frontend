@@ -8,7 +8,7 @@ export const _getTokens = () =>
     url: `${API_ENDPOINT}/auth/refresh-tokens`,
   });
 
-export const _login = (email, pw) =>
+export const _login = (email, pw, csrfToken) =>
   axios({
     method: "post",
     withCredentials: true,
@@ -16,5 +16,5 @@ export const _login = (email, pw) =>
       username: "testing1234@gmail.com",
       password: "testing1234",
     },
-    url: `${API_ENDPOINT}/users/login`,
+    url: `${API_ENDPOINT}/auth/login`,
   });

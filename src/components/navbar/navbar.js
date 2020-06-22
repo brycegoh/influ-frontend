@@ -2,7 +2,7 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 import Button from "../subcomponents//button/button";
 import Burgerbar from "./burgerbar";
-import "../../layout.css";
+import "../layout.css";
 import "./navbar.css";
 
 function Navbar(props) {
@@ -13,7 +13,7 @@ function Navbar(props) {
     history.push(path);
   };
   return (
-    <div className="flex-row-space-between-center navbar-container">
+    <div className="flex-row-space-between-center navbar-container primary-font">
       <Burgerbar onBurgerBar={onBurgerBar} />
       <div
         onClick={() => redirectTo("/")}

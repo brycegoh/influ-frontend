@@ -1,5 +1,4 @@
 import { createStore, applyMiddleware } from "redux";
-import logger from "redux-logger";
 
 const intialState = {
   user: {
@@ -18,7 +17,7 @@ const rootReducer = (state = intialState, action) => {
       newState.user = {
         userId: action.payload.userId,
         email: action.payload.email,
-        role: action.payload.role,
+        userType: action.payload.userType,
         csrfToken: action.payload.cfToken,
       };
       break;

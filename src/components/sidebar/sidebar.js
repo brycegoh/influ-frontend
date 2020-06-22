@@ -1,6 +1,6 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-import "../../layout.css";
+import "../layout.css";
 import "./sidebar.css";
 
 function Sidebar(props) {
@@ -12,7 +12,7 @@ function Sidebar(props) {
   };
   return (
     <div
-      className={`flex-column-start-start sidebar-container ${
+      className={`flex-column-start-start sidebar-container primary-font ${
         sideDrawerStatus && "open-sidebar"
       }`}
     >

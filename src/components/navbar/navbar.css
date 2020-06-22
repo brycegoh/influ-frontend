@@ -1,7 +1,8 @@
 .navbar-container {
-  padding-top: 5px;
   width: 100%;
-  margin-bottom: 10px;
+  height: 80px;
+  background-color: white;
+  opacity: 0.8;
 }
 
 /* burger bar */
@@ -27,7 +28,6 @@
 /* Logo */
 .navbar-logo {
   width: 15%;
-  font-family: "Lato", sans-serif;
   padding: 5px;
   cursor: pointer;
 }
@@ -35,7 +35,6 @@
 /* Individual items */
 .navbar-items {
   width: 15%;
-  font-family: "Lato", sans-serif;
   font-size: 1.2rem;
   padding: 5px;
   cursor: pointer;

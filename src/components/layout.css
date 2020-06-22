@@ -1,3 +1,7 @@
+.primary-font {
+  font-family: "Lato", sans-serif;
+}
+
 .flex-row-space-evenly-center {
   display: flex;
   flex-direction: row;
@@ -22,6 +26,18 @@
   justify-content: flex-start;
   align-items: center;
 }
+.flex-row-start-start {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+flex-row-end-center {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+}
 
 .flex-column-center-center {
   display: flex;
@@ -42,4 +58,11 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
+}
+
+.flex-column-start-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
 }
