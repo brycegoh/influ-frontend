@@ -12,9 +12,12 @@ export const _login = (email, pw, csrfToken) =>
   axios({
     method: "post",
     withCredentials: true,
+    url: `${API_ENDPOINT}/auth/login`,
     data: {
       username: "testing1234@gmail.com",
       password: "testing1234",
     },
-    url: `${API_ENDPOINT}/auth/login`,
+    headers: {
+      "cf-token": csrfToken,
+    },
   });

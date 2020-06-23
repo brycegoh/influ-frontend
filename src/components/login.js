@@ -6,25 +6,26 @@ import { _login } from "../services/index";
 import { useDispatch, useSelector } from "react-redux";
 
 function Login(props) {
-  const { userId, email, role, csrfToken } = useSelector((state) => state.user);
-  console.log({ userId, email, role, csrfToken });
+  const { userId, email, userType, csrfToken } = useSelector(
+    (store) => store.user
+  );
+  console.log({ userId, email, userType, csrfToken });
   const dispatch = useDispatch();
 
-  const [inputEmail, setEmail] = useState(null);
-  const [password, setPassword] = useState(null);
+  const [emailPass, setEmailPass] = useState({ email: null, password: null });
 
   const onEmailChange = (e) => {
-    setEmail(e.target.value);
+    setEmailPass({ ...emailPass, email: e.target.value });
   };
   const onPasswordChange = (e) => {
-    setPassword(e.target.value);
+    setEmailPass({ ...emailPass, password: e.target.value });
   };
   const onLogin = () => {
+    let { email, password } = emailPass;
     _login(email, password, csrfToken)
       .then((res) => {
         let { userId, email, userType } = res.data.user;
         let cfToken = res.headers["cf-token"];
-        console.log({ userId, email, userType, cfToken });
         dispatch({
           type: "ADD_USERID_EMAIL_ROLE_CSRFTOKEN",
           payload: { userId, email, userType, cfToken },
@@ -40,12 +41,12 @@ function Login(props) {
       <form>
         <Input
           placeholder={"Email"}
-          value={inputEmail}
+          value={emailPass.email}
           onChange={onEmailChange}
         />
         <Input
           placeholder={"Password"}
-          value={password}
+          value={emailPass.password}
           onChange={onPasswordChange}
         />
       </form>
@@ -54,4 +55,4 @@ function Login(props) {
   );
 }
 
-export default Login;
+export default React.memo(Login);
