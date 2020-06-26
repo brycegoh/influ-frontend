@@ -5,11 +5,13 @@ import "../layout.css";
 function Heading() {
   return (
     <div className="flex-column-center-center tag-line-container">
-      <div className="tag-line tag-line-main">Robin Hood of marketing</div>
+      <div className="tag-line tag-line-main">
+        Empowering marketing capabilities for every individual
+      </div>
       <div className="tag-line tag-line-sub">
-        {"Bringing back power to "}
-        <mark className="highlight">Ordinary People</mark> {"& "}
-        <mark className="highlight">Small to Medium Enterprises</mark>
+        {"To create a community of free for all marketing opportunities at "}
+        <mark className="highlight">lowest cost</mark> {"& "}
+        <mark className="highlight">zero risk</mark>
       </div>
     </div>
   );

@@ -6,32 +6,33 @@ import {
   Switch,
   Redirect,
 } from "react-router-dom";
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import LandingPage from "./components/landingpage/landingPage";
 import Navbar from "./components/navbar/navbar";
 import Sidebar from "./components/sidebar/sidebar";
-import Login from "./components/login";
+import Login from "./components/login/login";
 import Backdrop from "./components/subcomponents/backdrop/backdrop";
-import { _getTokens } from "./services";
+import { _getSession } from "./services";
 import ProtectedRoute from "./components/protectedRoute";
 
 function App(props) {
-  console.log(props);
+  const { userId, email, userType } = useSelector((store) => store.user);
+  const dispatch = useDispatch();
+
   useEffect(() => {
-    console.log("REFRESHING TOKENS");
-    _getTokens()
+    _getSession()
       .then((res) => {
-        let { userId, email, userType } = res.data;
-        let cfToken = res.headers["cf-token"];
-        props.setReduxUserDataAndCfToken({
-          userId,
-          email,
-          userType,
-          cfToken,
-        });
+        if (res.data) {
+          let { userId, email, userType } = res.data;
+          dispatch({
+            type: "INITIAL_ADD_USER",
+            payload: { userId, email, userType },
+          });
+        }
       })
       .catch((err) => console.log(err));
   }, []);
+
   const tabs = ["About Us", "Blog", "Contact Us"];
   const links = {
     "About Us": "about-us",
@@ -66,21 +67,4 @@ function App(props) {
   );
 }
 
-export default connect(
-  (state) => state.user,
-  (dispatch) => {
-    return {
-      setReduxUserDataAndCfToken: ({ userId, email, role, cfToken }) => {
-        return dispatch({
-          type: "ADD_USERID_EMAIL_ROLE_CSRFTOKEN",
-          payload: {
-            userId,
-            email,
-            role,
-            cfToken,
-          },
-        });
-      },
-    };
-  }
-)(App);
+export default App;

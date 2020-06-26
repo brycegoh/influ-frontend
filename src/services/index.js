@@ -1,23 +1,27 @@
 import axios from "axios";
 import { API_ENDPOINT } from "../config/links";
 
-export const _getTokens = () =>
+export const _getSession = () =>
   axios({
     method: "get",
     withCredentials: true,
-    url: `${API_ENDPOINT}/auth/refresh-tokens`,
+    url: `${API_ENDPOINT}/auth/get-session`,
   });
 
-export const _login = (email, pw, csrfToken) =>
+export const _login = (email, pw) =>
   axios({
     method: "post",
     withCredentials: true,
     url: `${API_ENDPOINT}/auth/login`,
     data: {
-      username: "testing1234@gmail.com",
-      password: "testing1234",
+      username: email,
+      password: pw,
     },
-    headers: {
-      "cf-token": csrfToken,
-    },
+  });
+export const _logout = () =>
+  axios({
+    method: "get",
+    withCredentials: true,
+    url: `${API_ENDPOINT}/auth/logout`,
+    data: {},
   });

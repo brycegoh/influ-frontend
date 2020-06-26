@@ -3,7 +3,7 @@
   height: 80px;
   background-color: white;
   opacity: 0.8;
-  position: sticky;
+  position: fixed;
   top: 0;
   z-index: 100;
 }
@@ -49,11 +49,14 @@
 }
 
 /* Login and register */
-.navbar-button {
+.navbar-button-row-loggedin {
+  width: 230px;
+  margin-right: 5px;
+}
+.navbar-button-row-loggedout {
   width: 190px;
   margin-right: 5px;
 }
-
 @media (max-width: 760px) {
   .navbar-items {
     display: none;

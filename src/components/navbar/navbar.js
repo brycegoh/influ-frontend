@@ -1,5 +1,7 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { _logout } from "../../services/index";
 import Button from "../subcomponents//button/button";
 import Burgerbar from "./burgerbar";
 import "../layout.css";
@@ -8,10 +10,25 @@ import "./navbar.css";
 function Navbar(props) {
   let { tabs, links, onBurgerBar } = props;
 
+  const { userId, email, userType } = useSelector((store) => store.user);
+  const dispatch = useDispatch();
+
+  const logOut = () => {
+    _logout().then((res) => {
+      console.log(res.data);
+      dispatch({
+        type: "DELETE_USER",
+        payload: {},
+      });
+      history.push("/");
+    });
+  };
+
   const history = useHistory();
   const redirectTo = (path) => {
     history.push(path);
   };
+
   return (
     <div className="flex-row-space-between-center navbar-container primary-font">
       <Burgerbar onBurgerBar={onBurgerBar} />
@@ -30,20 +47,41 @@ function Navbar(props) {
           {tab}
         </div>
       ))}
-      <div className="flex-row-space-between-center navbar-button">
-        <Button
-          onClick={() => redirectTo("/login")}
-          value={"Login"}
-          type="primary"
-          size="regular"
-        />
-        <div className="spacer" />
-        <Button
-          onClick={() => redirectTo("/register")}
-          value={"Register"}
-          type="primary"
-          size="regular"
-        />
+      <div
+        className={`flex-row-space-between-center ${
+          userId ? "navbar-button-row-loggedin" : "navbar-button-row-loggedout"
+        }`}
+      >
+        {userId ? (
+          <Button
+            onClick={() => redirectTo("/dashboard")}
+            value={"Dashboard"}
+            type="primary"
+            size="regular"
+          />
+        ) : (
+          <Button
+            onClick={() => redirectTo("/login")}
+            value={"Login"}
+            type="primary"
+            size="regular"
+          />
+        )}
+        {userId ? (
+          <Button
+            onClick={() => logOut()}
+            value={"Logout"}
+            type="primary"
+            size="regular"
+          />
+        ) : (
+          <Button
+            onClick={() => redirectTo("/register")}
+            value={"Register"}
+            type="primary"
+            size="regular"
+          />
+        )}
       </div>
     </div>
   );

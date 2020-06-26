@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import Heading from "./heading";
-import Vision from "./vision";
 import "../layout.css";
 import "./landingpage.css";
 
@@ -11,7 +10,6 @@ function LandingPage() {
   return (
     <div className="flex-column-start-center primary-font">
       <Heading />
-      <Vision />
     </div>
   );
 }
