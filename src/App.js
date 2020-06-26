@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import axios from "axios";
 import {
   BrowserRouter,
   Route,
@@ -22,8 +23,9 @@ function App(props) {
   useEffect(() => {
     _getSession()
       .then((res) => {
+        axios.defaults.headers.common["csrf-token"] = res.data["_csrf"];
         if (res.data) {
-          let { userId, email, userType } = res.data;
+          let { userId, email, userType } = res.data.user;
           dispatch({
             type: "INITIAL_ADD_USER",
             payload: { userId, email, userType },
