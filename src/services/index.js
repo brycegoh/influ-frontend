@@ -7,7 +7,17 @@ export const _getSession = () =>
     withCredentials: true,
     url: `${API_ENDPOINT}/auth/get-session`,
   });
-
+export const _register = ({ email, password }) =>
+  axios({
+    method: "post",
+    withCredentials: true,
+    url: `${API_ENDPOINT}/auth/register`,
+    data: {
+      email: email,
+      password: password,
+      userType: "admin",
+    },
+  });
 export const _login = (email, pw) =>
   axios({
     method: "post",
@@ -24,4 +34,18 @@ export const _logout = () =>
     withCredentials: true,
     url: `${API_ENDPOINT}/auth/logout`,
     data: {},
+  });
+export const _resendEmailVerification = ({ token, date }) =>
+  axios({
+    method: "post",
+    withCredentials: true,
+    url: `${API_ENDPOINT}/auth/resend-email-verification`,
+    data: { upn: token, dat: date },
+  });
+export const _verifyEmail = ({ token, date }) =>
+  axios({
+    method: "post",
+    withCredentials: true,
+    url: `${API_ENDPOINT}/auth/verify-email`,
+    data: { upn: token, dat: date },
   });

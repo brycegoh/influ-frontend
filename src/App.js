@@ -13,6 +13,8 @@ import Navbar from "./components/navbar/navbar";
 import Sidebar from "./components/sidebar/sidebar";
 import Login from "./components/login/login";
 import Backdrop from "./components/subcomponents/backdrop/backdrop";
+import EmailVerification from "./components/emailVerification/emailVerification.js";
+import Register from "./components/register/register.js";
 import { _getSession } from "./services";
 import ProtectedRoute from "./components/protectedRoute";
 
@@ -24,7 +26,7 @@ function App(props) {
     _getSession()
       .then((res) => {
         axios.defaults.headers.common["csrf-token"] = res.data["_csrf"];
-        if (res.data) {
+        if (res.data && res.data.user) {
           let { userId, email, userType } = res.data.user;
           dispatch({
             type: "INITIAL_ADD_USER",
@@ -61,8 +63,9 @@ function App(props) {
         {sideDrawerStatus && <Backdrop onClick={onBurgerBar} />}
         <Switch>
           <Route exact path="/" component={LandingPage} />
+          <Route exact path="/register" component={Register} />
           <Route exact path="/login" component={Login} />
-          <Redirect to="/" />
+          <Route exact path="/verify-email/" component={EmailVerification} />
         </Switch>
       </BrowserRouter>
     </div>
