@@ -1,6 +1,7 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
 import { _logout } from "../../services/index";
 import Button from "../subcomponents//button/button";
 import Burgerbar from "./burgerbar";
@@ -15,7 +16,7 @@ function Navbar(props) {
 
   const logOut = () => {
     _logout().then((res) => {
-      console.log(res.data);
+      axios.defaults.headers.common["csrf-token"] = res.data["_csrf"];
       dispatch({
         type: "DELETE_USER",
         payload: {},

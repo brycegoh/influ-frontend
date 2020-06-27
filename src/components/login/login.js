@@ -6,6 +6,7 @@ import "./login.css";
 import { _login } from "../../services/index";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
+import axios from "axios";
 
 function Login(props) {
   const history = useHistory();
@@ -22,6 +23,7 @@ function Login(props) {
     let { email, password } = emailPass;
     _login(email, password)
       .then((res) => {
+        axios.defaults.headers.common["csrf-token"] = res.data["_csrf"];
         let { userId, email, userType } = res.data.user;
         dispatch({
           type: "INITIAL_ADD_USER",

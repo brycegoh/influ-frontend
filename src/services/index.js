@@ -20,7 +20,7 @@ export const _login = (email, pw) =>
   });
 export const _logout = () =>
   axios({
-    method: "get",
+    method: "post",
     withCredentials: true,
     url: `${API_ENDPOINT}/auth/logout`,
     data: {},
