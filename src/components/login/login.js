@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Input from "../subcomponents/input";
 import Button from "../subcomponents/button/button";
 import "../layout.css";
@@ -12,6 +12,11 @@ function Login(props) {
   const history = useHistory();
   const { userId, email, userType } = useSelector((store) => store.user);
   const dispatch = useDispatch();
+  const firstInput = useRef(null);
+
+  useEffect(() => {
+    firstInput.current.focus();
+  }, []);
 
   const [emailPass, setEmailPass] = useState({ email: null, password: null });
 
@@ -38,15 +43,20 @@ function Login(props) {
         console.log(e.message);
       });
   };
-
+  const onEnterKey = (e) => {
+    if (e.key === "Enter") {
+      onLogin();
+    }
+  };
   const redirect = (path) => {
     history.push(path);
   };
 
   return (
     <div className="flex-column-center-center login-container">
-      <form className="flex-column-center-center">
+      <form className="flex-column-center-center" onKeyDown={onEnterKey}>
         <Input
+          ref={firstInput}
           type="text"
           placeholder={"Email"}
           onChange={(e) => onFormChange(e, "email")}

@@ -2,7 +2,7 @@ import React from "react";
 import "./button.css";
 
 function Button(props) {
-  let { onClick, value, type, size } = props;
+  let { onClick, value, type, size, refer } = props;
 
   const buttonTypes = {
     success: "button-success",
@@ -21,6 +21,7 @@ function Button(props) {
 
   return (
     <button
+      ref={refer}
       onClick={onClick}
       className={`pure-button primary-font ${buttonTypes[type]} ${buttonSize[size]}`}
     >
