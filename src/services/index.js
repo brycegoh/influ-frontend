@@ -49,3 +49,17 @@ export const _verifyEmail = ({ token, date }) =>
     url: `${API_ENDPOINT}/auth/verify-email`,
     data: { upn: token, dat: date },
   });
+export const _forgetPassword = ({ email }) =>
+  axios({
+    method: "post",
+    withCredentials: true,
+    url: `${API_ENDPOINT}/auth/forget-password-reset`,
+    data: { email },
+  });
+export const _resetPassword = ({ upn, dat, newPassword }) =>
+  axios({
+    method: "post",
+    withCredentials: true,
+    url: `${API_ENDPOINT}/auth/password-reset`,
+    data: { upn, dat, newPassword },
+  });

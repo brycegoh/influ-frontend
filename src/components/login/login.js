@@ -23,7 +23,10 @@ function Login(props) {
     let { email, password } = emailPass;
     _login(email, password)
       .then((res) => {
-        axios.defaults.headers.common["csrf-token"] = res.data["_csrf"];
+        if (res.data["_csrf"]) {
+          axios.defaults.headers.common["csrf-token"] = res.data["_csrf"];
+        }
+
         let { userId, email, userType } = res.data.user;
         dispatch({
           type: "INITIAL_ADD_USER",
@@ -36,9 +39,13 @@ function Login(props) {
       });
   };
 
+  const redirect = (path) => {
+    history.push(path);
+  };
+
   return (
-    <div class="flex-column-center-center login-container">
-      <form class="flex-column-center-center">
+    <div className="flex-column-center-center login-container">
+      <form className="flex-column-center-center">
         <Input
           type="text"
           placeholder={"Email"}
@@ -51,6 +58,13 @@ function Login(props) {
         />
       </form>
       <Button onClick={onLogin} value="Login" type="primary" size="regular" />
+      {/* <a href="/forget-password">Forget password?</a> */}
+      <Button
+        onClick={() => redirect("/forget-password")}
+        value="Forget password?"
+        type="primary"
+        size="regular"
+      />
     </div>
   );
 }

@@ -14,6 +14,8 @@ import Sidebar from "./components/sidebar/sidebar";
 import Login from "./components/login/login";
 import Backdrop from "./components/subcomponents/backdrop/backdrop";
 import EmailVerification from "./components/emailVerification/emailVerification.js";
+import ForgetPassword from "./components/forgetPassword/forgetPassword.js";
+import ResetPassword from "./components/resetPassword/resetPassword.js";
 import Register from "./components/register/register.js";
 import { _getSession } from "./services";
 import ProtectedRoute from "./components/protectedRoute";
@@ -66,6 +68,8 @@ function App(props) {
           <Route exact path="/register" component={Register} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/verify-email/" component={EmailVerification} />
+          <Route exact path="/forget-password" component={ForgetPassword} />
+          <Route exact path="/reset-password/" component={ResetPassword} />
         </Switch>
       </BrowserRouter>
     </div>

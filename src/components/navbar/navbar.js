@@ -16,7 +16,9 @@ function Navbar(props) {
 
   const logOut = () => {
     _logout().then((res) => {
-      axios.defaults.headers.common["csrf-token"] = res.data["_csrf"];
+      if (res.data["_csrf"]) {
+        axios.defaults.headers.common["csrf-token"] = res.data["_csrf"];
+      }
       dispatch({
         type: "DELETE_USER",
         payload: {},

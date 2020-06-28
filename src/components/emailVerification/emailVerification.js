@@ -14,7 +14,7 @@ function EmailVerification(props) {
   const [expiryStatus, setExpiryStatus] = useState(false);
   useEffect(() => {
     const params = new URLSearchParams(props.location.search);
-    if (moment().unix() > params.get("dat")) {
+    if (moment().unix() > Number(params.get("dat"))) {
       setExpiryStatus(true);
       setVerificationData({
         token: params.get("upn"),
