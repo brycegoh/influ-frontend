@@ -3,6 +3,7 @@ import moment from "moment";
 import { _resendEmailVerification, _verifyEmail } from "../../services/index";
 import { useHistory } from "react-router-dom";
 import Button from "../subcomponents/button/button";
+import Toast from "../subcomponents/toast/toast";
 import "../layout.css";
 
 function EmailVerification(props) {
@@ -11,6 +12,7 @@ function EmailVerification(props) {
     token: null,
     date: null,
   });
+  const [notificationArray, setNotiArray] = useState([]);
   const [expiryStatus, setExpiryStatus] = useState(false);
   useEffect(() => {
     const params = new URLSearchParams(props.location.search);
@@ -32,14 +34,14 @@ function EmailVerification(props) {
     console.log(verificationData);
     _resendEmailVerification(verificationData)
       .then((res) => {
-        console.log(res.data);
+        setNotiArray(res.data.messasge);
       })
       .catch((e) => console.log(e));
   };
   const verifyEmail = () => {
     _verifyEmail(verificationData)
       .then((res) => {
-        console.log(res.data);
+        setNotiArray(res.data.message);
       })
       .catch((e) => console.log(e));
   };
@@ -49,6 +51,11 @@ function EmailVerification(props) {
       style={{ height: "500px" }}
       className="flex-column-center-center hundredhundred primary-font"
     >
+      <Toast
+        position="top-right"
+        interval={2000}
+        notificationArray={notificationArray}
+      />
       {expiryStatus ? (
         <Button
           onClick={resendEmail}

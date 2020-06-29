@@ -4,6 +4,7 @@ import { _resetPassword } from "../../services/index";
 import { useHistory } from "react-router-dom";
 import Button from "../subcomponents/button/button";
 import Input from "../subcomponents/input/input";
+import Toast from "../subcomponents/toast/toast";
 import "../layout.css";
 
 function ResetPassword(props) {
@@ -14,6 +15,7 @@ function ResetPassword(props) {
     newPassword: "",
   });
   const [expiryStatus, setExpiryStatus] = useState(false);
+  const [notificationArray, setNotiArray] = useState([]);
   useEffect(() => {
     const params = new URLSearchParams(props.location.search);
     if (moment().unix() > Number(params.get("dat"))) {
@@ -34,7 +36,9 @@ function ResetPassword(props) {
   };
 
   const resetPw = () => {
-    _resetPassword(verificationData).then((res) => console.log(res));
+    _resetPassword(verificationData).then((res) =>
+      setNotiArray(res.data.message)
+    );
   };
 
   return (
@@ -42,6 +46,11 @@ function ResetPassword(props) {
       style={{ height: "500px", width: "600px" }}
       className="flex-column-center-center hundredhundred primary-font"
     >
+      <Toast
+        position="top-right"
+        interval={2000}
+        notificationArray={notificationArray}
+      />
       {!expiryStatus && (
         <Input
           type="password"
