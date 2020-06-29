@@ -51,11 +51,11 @@
 /* Login and register */
 .navbar-button-row-loggedin {
   width: 230px;
-  margin-right: 5px;
+  margin-right: 10px;
 }
 .navbar-button-row-loggedout {
-  width: 190px;
-  margin-right: 5px;
+  width: 200px;
+  margin-right: 10px;
 }
 @media (max-width: 760px) {
   .navbar-items {

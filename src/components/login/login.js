@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
-import Input from "../subcomponents/input";
+import Input from "../subcomponents/input/input";
 import Button from "../subcomponents/button/button";
+import Toast from "../subcomponents/toast/toast";
 import "../layout.css";
 import "./login.css";
 import { _login } from "../../services/index";
@@ -16,6 +17,7 @@ function Login(props) {
 
   useEffect(() => {
     firstInput.current.focus();
+    // document.getElementById("emailInput").focus();
   }, []);
 
   const [emailPass, setEmailPass] = useState({ email: null, password: null });
@@ -54,6 +56,23 @@ function Login(props) {
 
   return (
     <div className="flex-column-center-center login-container">
+      <Toast
+        position="top-right"
+        interval={5000}
+        notificationArray={[
+          {
+            type: "error",
+            title: "Invalid Email",
+            description: "Please enter a valid email",
+          },
+          {
+            type: "success",
+            title: "Invalid Email",
+            description: "Please enter a valid email",
+          },
+        ]}
+      />
+
       <form className="flex-column-center-center" onKeyDown={onEnterKey}>
         <Input
           ref={firstInput}
@@ -62,6 +81,7 @@ function Login(props) {
           onChange={(e) => onFormChange(e, "email")}
         />
         <Input
+          id="passwordInput"
           type="password"
           placeholder={"Password"}
           onChange={(e) => onFormChange(e, "password")}

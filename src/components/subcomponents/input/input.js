@@ -1,18 +1,19 @@
-import React, { forwardRef } from "react";
-
+import React, { forwardRef, Fragment } from "react";
+import "./input.css";
 const Input = React.forwardRef((props, ref) => {
   let { placeholder, onChange, type, errorStatus = false, errorMsg } = props;
 
   return (
-    <div>
+    <Fragment>
       <input
+        className="input-main"
         ref={ref}
         type={type}
         placeholder={placeholder}
         onChange={onChange}
       />
-      {errorStatus && <div>{errorMsg}</div>}
-    </div>
+      {errorStatus && <p>{errorMsg}</p>}
+    </Fragment>
   );
 });
 

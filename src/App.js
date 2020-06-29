@@ -18,7 +18,6 @@ import ForgetPassword from "./components/forgetPassword/forgetPassword.js";
 import ResetPassword from "./components/resetPassword/resetPassword.js";
 import Register from "./components/register/register.js";
 import { _getSession } from "./services";
-import ProtectedRoute from "./components/protectedRoute";
 
 function App(props) {
   const { userId, email, userType } = useSelector((store) => store.user);

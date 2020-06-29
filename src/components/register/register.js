@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
-import Input from "../subcomponents/input";
+import Input from "../subcomponents/input/input";
 import Button from "../subcomponents/button/button";
 import "../layout.css";
 import "../login/login.css";

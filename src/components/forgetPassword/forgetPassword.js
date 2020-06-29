@@ -3,7 +3,7 @@ import moment from "moment";
 import { _forgetPassword } from "../../services/index";
 import { useHistory } from "react-router-dom";
 import Button from "../subcomponents/button/button";
-import Input from "../subcomponents/input";
+import Input from "../subcomponents/input/input";
 import "../layout.css";
 
 function ForgetPassword(props) {

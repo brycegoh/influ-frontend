@@ -13,6 +13,12 @@
   justify-content: space-evenly;
   align-items: center;
 }
+.flex-row-space-around-center {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
 .flex-row-space-between-center {
   display: flex;
   flex-direction: row;
@@ -22,7 +28,7 @@
 .flex-row-center-center {
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
 }
 .flex-row-start-center {
@@ -37,7 +43,7 @@
   justify-content: flex-start;
   align-items: flex-start;
 }
-flex-row-end-center {
+.flex-row-end-center {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
