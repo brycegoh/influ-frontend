@@ -21,6 +21,7 @@ function Login(props) {
   }, []);
 
   const [emailPass, setEmailPass] = useState({ email: null, password: null });
+  const [errorArray, setErrorArray] = useState([]);
 
   const onFormChange = (e, value) => {
     setEmailPass({ ...emailPass, [value]: e.target.value });
@@ -34,15 +35,25 @@ function Login(props) {
           axios.defaults.headers.common["csrf-token"] = res.data["_csrf"];
         }
 
-        let { userId, email, userType } = res.data.user;
-        dispatch({
-          type: "INITIAL_ADD_USER",
-          payload: { userId, email, userType },
-        });
-        history.push("/dashboard");
+        if (res.data.errorFlag) {
+          setErrorArray(res.data.error);
+        } else {
+          let { userId, email, userType } = res.data.user;
+          dispatch({
+            type: "INITIAL_ADD_USER",
+            payload: { userId, email, userType },
+          });
+          history.push("/dashboard");
+        }
       })
       .catch((e) => {
-        console.log(e.message);
+        setErrorArray([
+          {
+            type: "error",
+            title: "Invalid Username or Password",
+            description: "Please check your username or password",
+          },
+        ]);
       });
   };
   const onEnterKey = (e) => {
@@ -58,19 +69,8 @@ function Login(props) {
     <div className="flex-column-center-center login-container">
       <Toast
         position="top-right"
-        interval={5000}
-        notificationArray={[
-          {
-            type: "error",
-            title: "Invalid Email",
-            description: "Please enter a valid email",
-          },
-          {
-            type: "success",
-            title: "Invalid Email",
-            description: "Please enter a valid email",
-          },
-        ]}
+        interval={2000}
+        notificationArray={errorArray}
       />
 
       <form className="flex-column-center-center" onKeyDown={onEnterKey}>

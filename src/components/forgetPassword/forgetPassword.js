@@ -21,15 +21,17 @@ function ForgetPassword(props) {
   return (
     <div
       style={{ height: "500px" }}
-      className="flex-column-center-center hundredhundred primary-font"
+      className="flex-column-center-center primary-font"
     >
-      <Input type="text" placeholder={"Email"} onChange={onFormChange} />
-      <Button
-        onClick={sendEmail}
-        value={"Send Email"}
-        type="primary"
-        size="regular"
-      />
+      <div style={{ width: "500px" }} className="flex-column-center-center">
+        <Input type="text" placeholder={"Email"} onChange={onFormChange} />
+        <Button
+          onClick={sendEmail}
+          value={"Send Email"}
+          type="primary"
+          size="regular"
+        />
+      </div>
     </div>
   );
 }

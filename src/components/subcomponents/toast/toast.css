@@ -6,6 +6,7 @@
   box-sizing: border-box;
   color: white;
   opacity: 0.95;
+  padding-top: 10px;
 }
 .notification {
   background: #fff;
@@ -23,7 +24,7 @@
   margin-right: 5px;
 }
 .notification-title {
-  height: 30%;
+  height: 40%;
   width: 100%;
   margin-bottom: 10px;
 }
@@ -105,27 +106,27 @@
 /*mobile*/
 @media (max-width: 760px) {
   .notification {
-    height: 40px;
-    width: 150px;
+    height: 80px;
+    width: 170px;
   }
   .notification-title {
-    font-weight: 600;
-    font-size: 16px;
+    font-weight: 550;
+    font-size: 13px;
   }
   .notification-description {
     font-weight: 500;
-    font-size: 11px;
+    font-size: 12px;
   }
 }
 /*desktop*/
 @media (min-width: 759px) {
   .notification {
-    height: 50px;
-    width: 200px;
+    height: 90px;
+    width: 240px;
   }
   .notification-title {
     font-weight: 700;
-    font-size: 16px;
+    font-size: 14px;
   }
   .notification-description {
     font-weight: 500;

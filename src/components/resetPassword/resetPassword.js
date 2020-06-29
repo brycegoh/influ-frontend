@@ -39,7 +39,7 @@ function ResetPassword(props) {
 
   return (
     <div
-      style={{ height: "500px" }}
+      style={{ height: "500px", width: "600px" }}
       className="flex-column-center-center hundredhundred primary-font"
     >
       {!expiryStatus && (

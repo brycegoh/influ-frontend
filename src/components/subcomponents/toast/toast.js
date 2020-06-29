@@ -18,36 +18,40 @@ const Toast = (props) => {
 
   useEffect(() => {
     setNotiArray(notificationArray);
-    if (interval) {
-      const intFunc = setInterval(() => {
-        // let copy = [...notiArray];
-        // copy.splice(0);
-        // setNotiArray([]);
-        setStatus("outgoing");
-        return () => {
-          clearInterval(intFunc);
-          setNotiArray([]);
-        };
-      }, interval);
-    }
-  }, []);
+    console.log("render");
+    setTimeout(() => {
+      console.log("running");
+      setStatus("outgoing");
+    }, interval);
+
+    return () => {
+      setStatus("incoming");
+    };
+  }, [notificationArray]);
 
   return (
     <div className={`notification-container ${position}`}>
-      {notiArray.map((notification, i) => (
-        <div
-          key={i}
-          className={`primary-font flex-column-start-center notification ${position} ${notification.type} ${status}`}
-        >
-          <div className={`flex-row-start-center notification-title`}>
-            <img src={icons[notification.type]} className="notification-icon" />
-            <div>{notification.title}</div>
+      {notiArray.map((notification, i) => {
+        return (
+          <div
+            key={i}
+            className={`primary-font flex-column-start-center notification ${position} ${notification.type} ${status}`}
+          >
+            <div className={`flex-row-start-center notification-title`}>
+              <img
+                src={icons[notification.type]}
+                className="notification-icon"
+              />
+              <div>{notification.title}</div>
+            </div>
+            {notification.description && (
+              <div className={`flex-row-start-center notification-description`}>
+                <p>{notification.description}</p>
+              </div>
+            )}
           </div>
-          <div className={`flex-row-start-center notification-description`}>
-            <p>{notification.description}</p>
-          </div>
-        </div>
-      ))}
+        );
+      })}
     </div>
   );
 };
