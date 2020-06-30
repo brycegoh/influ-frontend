@@ -20,7 +20,7 @@ function Login(props) {
     // document.getElementById("emailInput").focus();
   }, []);
 
-  const [emailPass, setEmailPass] = useState({ email: null, password: null });
+  const [emailPass, setEmailPass] = useState({ email: "", password: "" });
   const [errorArray, setErrorArray] = useState([]);
 
   const onFormChange = (e, value) => {
@@ -29,32 +29,42 @@ function Login(props) {
 
   const onLogin = () => {
     let { email, password } = emailPass;
-    _login(email, password)
-      .then((res) => {
-        if (res.data["_csrf"]) {
-          axios.defaults.headers.common["csrf-token"] = res.data["_csrf"];
-        }
 
-        if (res.data.errorFlag) {
-          setErrorArray(res.data.error);
-        } else {
-          let { userId, email, userType } = res.data.user;
-          dispatch({
-            type: "INITIAL_ADD_USER",
-            payload: { userId, email, userType },
-          });
-          history.push("/dashboard");
-        }
-      })
-      .catch((e) => {
-        setErrorArray([
-          {
-            type: "error",
-            title: "Invalid Username or Password",
-            description: "Please check your username or password",
-          },
-        ]);
-      });
+    if (email.length === 0 || password.length === 0) {
+      setErrorArray([
+        {
+          type: "error",
+          title: "Invalid Username or Password",
+          description: "Please check your username or password",
+        },
+      ]);
+    } else {
+      _login(email, password)
+        .then((res) => {
+          if (res.data["_csrf"]) {
+            axios.defaults.headers.common["csrf-token"] = res.data["_csrf"];
+          }
+          if (res.data.errorFlag) {
+            setErrorArray(res.data.error);
+          } else {
+            let { userId, email, userType } = res.data.user;
+            dispatch({
+              type: "INITIAL_ADD_USER",
+              payload: { userId, email, userType },
+            });
+            history.push("/dashboard");
+          }
+        })
+        .catch((e) => {
+          setErrorArray([
+            {
+              type: "error",
+              title: "Invalid Username or Password",
+              description: "Please check your username or password",
+            },
+          ]);
+        });
+    }
   };
   const onEnterKey = (e) => {
     if (e.key === "Enter") {
