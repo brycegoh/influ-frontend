@@ -30,12 +30,12 @@ const Toast = (props) => {
   }, [notificationArray]);
 
   return (
-    <div className={`notification-container ${position}`}>
+    <div className={`notification-container ${position} ${status}`}>
       {notiArray.map((notification, i) => {
         return (
           <div
             key={i}
-            className={`primary-font flex-column-start-center notification ${position} ${notification.type} ${status}`}
+            className={`primary-font flex-column-start-center notification ${position} ${notification.type} `}
           >
             <div className={`flex-row-start-center notification-title`}>
               <img

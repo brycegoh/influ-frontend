@@ -63,11 +63,12 @@
 .incoming {
   transform: translateX(0);
   transition: transform 0.7s ease-in-out;
-  animation: toast-in-right 0.7s;
+  animation: toast-in-right 0.8s;
 }
 .outgoing {
   transform: translateX(150%);
   transition: transform 0.9s ease-in-out;
+  /* display: block; */
   /* /* transition: transform 0.7s ease-in; */
 }
 

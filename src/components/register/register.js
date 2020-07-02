@@ -13,7 +13,7 @@ function Register(props) {
   const [emailPass, setEmailPass] = useState({ email: null, password: null });
   const onRegister = () => {
     _register(emailPass).then((res) => {
-      // history.push("/")
+      console.log(res.data.payload);
     });
   };
   const onFormChange = (e, value) => {
