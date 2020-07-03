@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { _logout } from "../../services/index";
-import Button from "../subcomponents//button/button";
+import { Button } from "../subcomponents";
 import Burgerbar from "./burgerbar";
 import "../layout.css";
 import "./navbar.css";

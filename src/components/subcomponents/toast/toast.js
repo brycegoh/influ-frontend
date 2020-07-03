@@ -5,7 +5,7 @@ const check = require("./icons/check.svg");
 const error = require("./icons/error.svg");
 const warning = require("./icons/warning.svg");
 
-const Toast = (props) => {
+export const Toast = (props) => {
   const { notificationArray, position, interval } = props;
   const icons = {
     error: error,

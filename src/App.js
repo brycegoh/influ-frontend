@@ -8,15 +8,17 @@ import {
   Redirect,
 } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import LandingPage from "./components/landingpage/landingPage";
-import Navbar from "./components/navbar/navbar";
-import Sidebar from "./components/sidebar/sidebar";
-import Login from "./components/login/login";
-import Backdrop from "./components/subcomponents/backdrop/backdrop";
-import EmailVerification from "./components/emailVerification/emailVerification.js";
-import ForgetPassword from "./components/forgetPassword/forgetPassword.js";
-import ResetPassword from "./components/resetPassword/resetPassword.js";
-import Register from "./components/register/register.js";
+import { Backdrop } from "./components/subcomponents";
+import {
+  EmailVerification,
+  LandingPage,
+  Navbar,
+  Sidebar,
+  Login,
+  ForgetPassword,
+  ResetPassword,
+  Register,
+} from "./components";
 import { _getSession } from "./services";
 
 function App(props) {

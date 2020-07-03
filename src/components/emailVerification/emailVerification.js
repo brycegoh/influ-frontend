@@ -2,8 +2,7 @@ import React, { useState, useEffect } from "react";
 import moment from "moment";
 import { _resendEmailVerification, _verifyEmail } from "../../services/index";
 import { useHistory } from "react-router-dom";
-import Button from "../subcomponents/button/button";
-import Toast from "../subcomponents/toast/toast";
+import { Button, Toast } from "../subcomponents";
 import "../layout.css";
 
 function EmailVerification(props) {

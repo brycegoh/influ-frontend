@@ -2,9 +2,7 @@ import React, { useState, useEffect } from "react";
 import moment from "moment";
 import { _forgetPassword } from "../../services/index";
 import { useHistory } from "react-router-dom";
-import Button from "../subcomponents/button/button";
-import Input from "../subcomponents/input/input";
-import Toast from "../subcomponents/toast/toast";
+import { Button, Input, Toast } from "../subcomponents";
 import "../layout.css";
 
 function ForgetPassword(props) {

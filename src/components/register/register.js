@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
-import Input from "../subcomponents/input/input";
-import Button from "../subcomponents/button/button";
+import { Input, Button } from "../subcomponents";
 import "../layout.css";
 import "../login/login.css";
 import { _register } from "../../services/index";

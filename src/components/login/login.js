@@ -1,7 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import Input from "../subcomponents/input/input";
-import Button from "../subcomponents/button/button";
-import Toast from "../subcomponents/toast/toast";
+import { Input, Button, Toast } from "../subcomponents";
 import "../layout.css";
 import "./login.css";
 import { _login } from "../../services/index";
