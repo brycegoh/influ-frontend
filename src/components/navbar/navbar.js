@@ -7,6 +7,7 @@ import { Button } from "../subcomponents";
 import Burgerbar from "./burgerbar";
 import "../layout.css";
 import "./navbar.css";
+import handShakeLogo from "../../assets/handShakeLogo.svg";
 
 function Navbar(props) {
   let { tabs, links, onBurgerBar } = props;
@@ -37,9 +38,9 @@ function Navbar(props) {
       <Burgerbar onBurgerBar={onBurgerBar} />
       <div
         onClick={() => redirectTo("/")}
-        className="flex-column-center-center navbar-logo"
+        className="flex-column-center-center"
       >
-        <div>LOGO</div>
+        <img className="navbar-logo" src={handShakeLogo} />
       </div>
       {tabs.map((tab) => (
         <div
@@ -74,14 +75,14 @@ function Navbar(props) {
           <Button
             onClick={() => logOut()}
             value={"Logout"}
-            type="primary"
+            type="secondary"
             size="regular"
           />
         ) : (
           <Button
             onClick={() => redirectTo("/register")}
             value={"Register"}
-            type="primary"
+            type="secondary"
             size="regular"
           />
         )}

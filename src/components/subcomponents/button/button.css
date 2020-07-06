@@ -9,14 +9,21 @@
   cursor: pointer;
   letter-spacing: 1.5px;
   margin-bottom: 10px;
+  box-shadow: 2px 2px rgba(0, 0, 0, 0.1);
 }
 
 .button-success,
 .button-error,
 .button-warning,
-.button-secondary,
 .button-primary {
-  color: white;
+  /* color: white; */
+  color: #2c3c5b;
+  border-radius: 4px;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+.button-secondary {
+  color: #0ac5a8;
   border-radius: 4px;
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
 }
@@ -37,13 +44,15 @@
 }
 
 .button-secondary {
-  background: rgb(66, 184, 221);
+  /* background: rgb(66, 184, 221); */
   /* this is a light blue */
+  background: #2c3c5b;
 }
 
 .button-primary {
-  background: rgb(0, 120, 231);
+  /* background: rgb(0, 120, 231); */
   /* this is a blue */
+  background: #0ac5a8;
 }
 
 .button-xsmall {

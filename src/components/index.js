@@ -6,4 +6,5 @@ export { default as Navbar } from "./navbar/navbar";
 export { default as Register } from "./register/register";
 export { default as ResetPassword } from "./resetPassword/resetPassword";
 export { default as Sidebar } from "./sidebar/sidebar";
-// export { default as EmailVerificaion } from "./emailVerificaion/emailVerificaion";
+export { default as Blog } from "./blog/blog";
+export { default as BlogEditor } from "./blogEditor/blogEditor";

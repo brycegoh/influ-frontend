@@ -27,10 +27,6 @@ const rootReducer = (state = intialState, action) => {
   return newState;
 };
 
-const middlewareLogger = (store) => (next) => (action) => {
-  console.log("Logged Action: ", action);
-  next();
-};
 let store;
 if (process.env.NODE_ENV === "production") {
   store = createStore(rootReducer);

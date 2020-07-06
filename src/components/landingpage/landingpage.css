@@ -1,62 +1,74 @@
 /* heading */
-.tag-line-container {
-  height: 385px;
-  max-height: 400px;
+.tile-one-container {
+  height: 700px;
   width: 100%;
-  margin-left: 10px;
-  margin-right: 10px;
-  padding-top: 100px; /*navbar is 80px*/
+}
+.tile-one-block {
+  height: 100%;
+  width: 50%;
+  padding: 20px;
+}
+.left-block-bg {
+  background-color: #2c3c5b;
+}
+.tile-one-rectangle {
+  height: 100px;
+  width: 270px;
+  background-color: #869cb8;
+}
+.tile-one-logo {
+  width: 100%;
+  height: 100%;
+  background-color: #869cb8;
+}
+.tile-one-handshake {
+  width: 80px;
+  height: 80px;
+}
+.tile-one-laico {
+  height: 100%;
+  padding-left: 10px;
+  padding-right: 10px;
+  font-family: "Nunito", sans-serif;
+  font-size: 50px;
+  color: #2c3c5b;
+  background-color: #0ac5a8;
+}
+.tile-one-tagline {
+  width: 100%;
+  margin-top: 10px;
+  color: #0ac5a8;
+  letter-spacing: 1px;
+}
+/*----------------------------------------------*/
+.right-block-bg {
+  background-color: #0ac5a8;
+  padding-left: 15%;
+}
+.tile-one-welcome {
+  font-family: "Montserrat", sans-serif;
+  font-weight: bold;
+  font-size: 30px;
+  margin-bottom: 20px;
+}
+.tile-one-intro {
+  width: 90%;
+  letter-spacing: 2px;
+  line-height: 30px;
+  margin-bottom: 50px;
+}
+.tile-one-socials-bar {
+  width: 200px;
+  height: 100px;
+}
+.tile-one-social-logo {
   text-align: center;
+  width: 30%;
+  height: 100%;
 }
-
-.tag-line {
-  color: black;
-  letter-spacing: 1.5px;
-}
-
+/*----------------------------------------------*/
 @media (max-width: 760px) {
-  .tag-line-main {
-    font-size: 200%;
-  }
-
-  .tag-line-sub {
-    font-size: 100%;
-  }
-
-  .tag-line-header {
-    font-size: 200%;
-  }
 }
 
 @media (min-width: 759px) {
-  .tag-line-main {
-    font-size: 500%;
-  }
-
-  .tag-line-sub {
-    font-size: 200%;
-  }
-
-  .tag-line-header {
-    font-size: 300%;
-  }
 }
-
-.highlight {
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 90%, #ffd0ae 10%);
-}
-
-/* Description Columns */
-/* .description-column {
-  height: 505px;
-  max-height: 400px;
-  width: 100%;
-  padding-left: 20%;
-}
-.description-header {
-  width: 100%;
-  margin-bottom: 30px;
-}
-.description {
-  white-space: pre-line;
-} */

@@ -18,8 +18,11 @@ import {
   ForgetPassword,
   ResetPassword,
   Register,
+  Blog,
+  BlogEditor,
 } from "./components";
 import { _getSession } from "./services";
+import "./App.css";
 
 function App(props) {
   const { userId, email, userType } = useSelector((store) => store.user);
@@ -54,7 +57,7 @@ function App(props) {
   };
 
   return (
-    <div style={{ height: "100%", width: "100%" }}>
+    <div>
       <BrowserRouter>
         <Navbar tabs={tabs} links={links} onBurgerBar={onBurgerBar} />
         <Sidebar
@@ -64,14 +67,22 @@ function App(props) {
           links={links}
         />
         {sideDrawerStatus && <Backdrop onClick={onBurgerBar} />}
-        <Switch>
-          <Route exact path="/" component={LandingPage} />
-          <Route exact path="/register" component={Register} />
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/verify-email/" component={EmailVerification} />
-          <Route exact path="/forget-password" component={ForgetPassword} />
-          <Route exact path="/reset-password/" component={ResetPassword} />
-        </Switch>
+        <div className="body-container">
+          <Switch>
+            <Route exact path="/" component={LandingPage} />
+            <Route exact path="/register" component={Register} />
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/verify-email/" component={EmailVerification} />
+            <Route exact path="/forget-password" component={ForgetPassword} />
+            <Route exact path="/reset-password/" component={ResetPassword} />
+            <Route exact path="/blog" component={Blog} />
+            <Route
+              exact
+              path="/blog/editor/:draftInfo?"
+              component={BlogEditor}
+            />
+          </Switch>
+        </div>
       </BrowserRouter>
     </div>
   );
